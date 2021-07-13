@@ -1,13 +1,6 @@
 # UI/UX for space
 
 ## Break Change
-<<<<<<< HEAD
-
-### `0.0.1`
-
-build react-router-dom
-=======
->>>>>>> cbb2f2d7f4268db4540c8720422f0c2388d8a5e7
 
 ### `0.0.1`
 
