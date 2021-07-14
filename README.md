@@ -2,6 +2,9 @@
 
 ## Break Change
 
+### `0.0.2`
+add status UI
+
 ### `0.0.1`
 
 build react-router-dom

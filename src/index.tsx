@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './assets/scss/index.scss';
 import App from './views/App';
 import reportWebVitals from './reportWebVitals';
-
+import {RecoilRoot} from "recoil";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );

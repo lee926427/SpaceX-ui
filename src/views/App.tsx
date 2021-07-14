@@ -8,6 +8,7 @@ import {
 import {useRecoilState} from "recoil";
 import {user} from "../store/atoms"
 import Home from "./Home"
+
 interface RouteProps{
   path: string
   name: string
@@ -16,6 +17,7 @@ interface RouteProps{
     [any: string]: any
   }
 }
+
 interface TemplateProps{
   Header?: Function
   Footer?: Function
@@ -27,7 +29,7 @@ function Template({Header,Footer,children}:TemplateProps){
   return(
     <Router>
       {Header !== undefined ? Header() : null}
-      <main>
+      <main className="flex-1">
         <Switch>
           {children}
         </Switch>
@@ -46,17 +48,17 @@ function App() {
     }
   ]
   const Header = () => (
-  <header>
-    <div>header</div>
+  <header className="flex justify-center text-blueGray-100 text-2xl font-bold py-4">
+    <div>VEHICLE OVERVIEW</div>
   </header>
   );
   const Footer = () => (
-  <footer>
-    <div>footer</div>
+  <footer  className="flex justify-center">
+    <div></div>
   </footer>
   );
   return (
-    <div className="App">
+    <div className="App h-screen flex flex-col bg-blueGray-900">
       <Template Header={Header} Footer={Footer}>
       {
         routes.map(
