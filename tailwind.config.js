@@ -13,6 +13,9 @@ module.exports = {
       auto: '1 1 auto',
       full:'1 1 100%',
       '1': '1 1 0%'
+    },
+    minWidth:{
+      fit: 'fit-content'
     }
   },
   variants: {

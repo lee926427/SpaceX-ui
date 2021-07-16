@@ -9,7 +9,7 @@ add status UI
 
 build react-router-dom
 
-## breaking change
+## Available Scripts
 
 In the project directory, you can run:
 

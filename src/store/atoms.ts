@@ -1,5 +1,9 @@
 import {atom} from "recoil";
 
+export interface NavigationItemProps{
+    name: string;
+    icon: string;
+}
 
 export interface TaskProps{
     taskName:   string;
@@ -17,7 +21,7 @@ export const user = atom({
     key: 'user',
     default: null
 })
-export const stateItems = atom<ItemStateProps[]>({
+export const rocketState = atom<ItemStateProps[]>({
     key:"ROCKET_STATUS",
     default:[
         {
@@ -41,6 +45,22 @@ export const stateItems = atom<ItemStateProps[]>({
             value: 389.4,
             unit: "km"
         },
+    ]
+})
+export const otherState = atom<ItemStateProps[]>({
+    key:"OTHER_STATUS",
+    default:[
+        {
+            label:"Inclination",
+            expected: 90,
+            value: 51.67,
+            unit: "°"
+        },{
+            label:"Range to 155",
+            expected: 0.022,
+            value: 0.02,
+            unit: "km"
+        }
     ]
 })
 export const tasks = atom<TaskProps[]>({

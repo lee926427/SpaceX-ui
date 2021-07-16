@@ -3,12 +3,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import {useRecoilState} from "recoil";
-import {user} from "../store/atoms"
-import Home from "./Home"
-
+import System from "./System"
+import Cabin from "./Cabin"
 interface RouteProps{
   path: string
   name: string
@@ -38,28 +35,35 @@ function Template({Header,Footer,children}:TemplateProps){
     </Router>
   )
 }
+function TemplateHeader(){
+  return(
+    <header className="flex justify-center text-blueGray-100 text-2xl font-bold py-4">
+      <div>VEHICLE OVERVIEW</div>
+    </header>
+  )
+}
+function TemplateFooter(){
+  return(
+    <footer>
 
+    </footer>
+  )
+}
 function App() {
   const routes:RouteProps[] =  [
     {
-      path:'/Home',
-      name:'Home',
-      component: Home
+      path:'/SYSTEM',
+      name:'SYSTEM',
+      component: System
+    },{
+      path:'/CABIN',
+      name:'CABIN',
+      component: Cabin
     }
   ]
-  const Header = () => (
-  <header className="flex justify-center text-blueGray-100 text-2xl font-bold py-4">
-    <div>VEHICLE OVERVIEW</div>
-  </header>
-  );
-  const Footer = () => (
-  <footer  className="flex justify-center">
-    <div></div>
-  </footer>
-  );
   return (
     <div className="App h-screen flex flex-col bg-blueGray-900">
-      <Template Header={Header} Footer={Footer}>
+      <Template Header={TemplateHeader} Footer={TemplateFooter}>
       {
         routes.map(
           route => (<Route path={route.path} component={route.component}></Route>)
