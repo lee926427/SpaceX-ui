@@ -1,10 +1,10 @@
-import {createContext,useState} from 'react';
+import {useState} from 'react';
 import {useRecoilValue} from "recoil";
 import {tasks,rocketState,otherState} from "../store/atoms"
 import classNames from "classnames";
 import { AiFillCheckCircle } from "react-icons/ai";
 import StatusProgress from "../components/organisms/StatusProgress";
-export const SystemContext = createContext({});
+import SpotLight from "../components/atoms/SpotLight";
 
 
 function View(){
@@ -70,7 +70,11 @@ function View(){
                     </button>
                 </div>
             </aside>
-            <main className="h-full flex-full">
+            <main className="h-full flex-full relative">
+                <SpotLight 
+                    gradient="radial-gradient(#F9FAFB 0%,#F9FAFB 1%,#6B7280 26%,#111827 66%, #111827 96%)"
+                    transform="translateY(220px) rotateX(64deg)"
+                />
             </main>
             <aside className="h-full flex-auto flex flex-col items-end justify-start pb-4 px-4 min-w-fit">
                 <StatusProgress items={rocketStatus}/>

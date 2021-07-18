@@ -2,6 +2,9 @@
 
 ## Break Change
 
+### `0.0.3`
+add Navigation
+
 ### `0.0.2`
 add status UI
 

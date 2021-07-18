@@ -1,19 +1,17 @@
-import {ReactNode,ComponentType} from 'react';
+import {ReactNode} from 'react';
+import {routes,RouteProps} from "../store/atoms";
+import Navigation from "../components/organisms/Navigations"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
+  useLocation,
 } from "react-router-dom";
-import System from "./System"
-import Cabin from "./Cabin"
-interface RouteProps{
-  path: string
-  name: string
-  component: ComponentType
-  meta?: {
-    [any: string]: any
-  }
-}
+import { useRecoilValue } from 'recoil';
+import {FaRocket,FaUsers} from "react-icons/fa";
+import classNames from 'classnames';
+
 
 interface TemplateProps{
   Header?: Function
@@ -43,33 +41,49 @@ function TemplateHeader(){
   )
 }
 function TemplateFooter(){
+  const links = useRecoilValue<RouteProps[]>(routes)
+  const location = useLocation();
   return(
     <footer>
-
+      <nav className="fixed bottom-0 w-full pointer-events-none flex justify-center">
+        <Navigation className="flex flex-row bg-blueGray-900 rounded-t-xl px-4 py-2">
+          {
+            links.map(
+              link=>(
+                <li key={link.name}  className=" pointer-events-auto">
+                  <Link to={link.path}>
+                    <div className={classNames(
+                      "flex flex-col justify-items-end items-center px-2 text-blueGray-100",
+                      {
+                        "text-blueGray-100": location.pathname === link.path,
+                        "text-blueGray-500": location.pathname !== link.path,
+                      }
+                    )}>
+                      { link.path === "/ROCKET" ?<FaRocket size="2.4em"/>:null}
+                      { link.path === "/MEMBER" ?<FaUsers size="2.4em"/>:null}
+                      <span className="font-bold text-xs">{link.name}</span>
+                    </div>
+                  </Link>
+                </li>
+              )
+            )
+          }
+        </Navigation>
+      </nav>
     </footer>
   )
 }
 function App() {
-  const routes:RouteProps[] =  [
-    {
-      path:'/SYSTEM',
-      name:'SYSTEM',
-      component: System
-    },{
-      path:'/CABIN',
-      name:'CABIN',
-      component: Cabin
-    }
-  ]
+  const navigationLinks = useRecoilValue<RouteProps[]>(routes)
   return (
     <div className="App h-screen flex flex-col bg-blueGray-900">
-      <Template Header={TemplateHeader} Footer={TemplateFooter}>
-      {
-        routes.map(
-          route => (<Route path={route.path} component={route.component}></Route>)
-        )
-      }
-      </Template>
+        <Template Header={()=><TemplateHeader/>} Footer={()=><TemplateFooter/>}>
+        {
+          navigationLinks.map(
+            link => (<Route path={link.path} component={link.component}></Route>)
+          )
+        }
+        </Template>
     </div>
   );
 }

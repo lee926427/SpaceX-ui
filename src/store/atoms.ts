@@ -1,5 +1,12 @@
+import {ComponentType} from "react";
 import {atom} from "recoil";
-
+import Rocket from "../views/Rocket"
+import Member from "../views/Member"
+export interface RouteProps{
+    path: string;
+    name: string;
+    component: ComponentType
+}
 export interface NavigationItemProps{
     name: string;
     icon: string;
@@ -16,7 +23,21 @@ export interface ItemStateProps{
     value: number,
     unit: string
 }
-
+export const routes = atom<RouteProps[]>({
+    key: "ROUTES",
+    default:[
+        {
+            path:'/ROCKET',
+            name:'ROCKET',
+            component: Rocket
+        },
+        {
+            path:'/MEMBER',
+            name:'MEMBER',
+            component: Member
+        }
+    ]
+})
 export const user = atom({
     key: 'user',
     default: null
