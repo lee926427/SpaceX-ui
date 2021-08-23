@@ -4,9 +4,66 @@ import {tasks,rocketState,otherState} from "../store/atoms"
 import classNames from "classnames";
 import { AiFillCheckCircle } from "react-icons/ai";
 import StatusProgress from "../components/organisms/StatusProgress";
-import SpotLight from "../components/atoms/SpotLight";
 
-
+function MainCharts(){
+    return(
+        <ul className="absolute w-screen flex flex-row justify-center">
+            <li className=" w-40 h-40 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-40 h-40 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-40 h-40 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-40 h-40 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+        </ul>
+    )
+}
+function SubCharts(){
+    return(
+        <ul className="absolute top-44 w-screen flex flex-row justify-center">
+            <li className=" w-36 h-36 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-36 h-36 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-40 h-40 p-4 mx-2 "></li>
+            <li className=" w-36 h-36 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+            <li className=" w-36 h-36 rounded-md bg-blueGray-800 p-4 mx-2 opacity-25"></li>
+        </ul>
+    )
+}
+function VehicleConnections(){
+    return(
+        <>
+            <h2>CONNETCTIONS</h2>
+            <hr className="my-2"/>
+            <ul className=" w-full">
+                <li className="w-full flex justify-between">
+                    <span>Manual rigs</span> <span className=" text-blueGray-50">connected</span>
+                </li>
+                <li className="w-full flex justify-between">
+                    <span>Changelog</span> <span className=" text-blueGray-50">connected</span>
+                </li>
+                <li className="w-full flex justify-between">
+                    <span>Airlock</span> <span className=" text-blueGray-50">connected</span>
+                </li>
+                <li className="w-full flex justify-between">
+                    <span>Wing</span> <span className=" text-blueGray-50">connected</span>
+                </li>
+            </ul>
+        </>
+    )
+}
+function VehicleStatus(){
+    return(
+        <ul className="absolute top-1/2 transform -translate-y-16 w-screen flex flex-row justify-center text-blueGray-400">
+            <li className=" w-64 rounded-md p-4 mx-2">
+                <VehicleConnections/>
+            </li>
+            <li className=" w-60 h-44 p-4 mx-2 "></li>
+            <li className=" w-64 rounded-md  p-4 mx-2"></li>
+        </ul>
+    )
+}
+function Leftside(){
+    return(
+        <></>
+    )
+}
 function View(){
     const taskList = useRecoilValue(tasks);
     const rocketStatus = useRecoilValue(rocketState);
@@ -38,8 +95,8 @@ function View(){
     ))
     const [mode,setMode] = useState("SYSTEM");
     return (
-        <div id="System" className="h-full flex flex-row">
-            <aside className="h-full flex-auto flex flex-col justify-start pb-4 px-4 min-w-fit">
+        <div id="SystemContainer" className="h-full flex flex-row relative">
+            <aside className="h-full flex-auto flex flex-col justify-start pb-4 px-4 min-w-fit absolute left-0 z-10">
                 <ul className="h-full flex flex-col">
                     {taskItems}
                 </ul>
@@ -70,13 +127,13 @@ function View(){
                     </button>
                 </div>
             </aside>
-            <main className="h-full flex-full relative">
-                <SpotLight 
-                    gradient="radial-gradient(#F9FAFB 0%,#F9FAFB 1%,#6B7280 26%,#111827 66%, #111827 96%)"
-                    transform="translateY(220px) rotateX(64deg)"
-                />
+            <main id="vehicleDashboard" className="h-full flex-full relative">
+                <MainCharts/>
+                <SubCharts/>
+                <VehicleStatus/>
+                <div id="vehicle" className=" w-full h-full"></div>
             </main>
-            <aside className="h-full flex-auto flex flex-col items-end justify-start pb-4 px-4 min-w-fit">
+            <aside className="h-full flex-auto flex flex-col items-end justify-start pb-4 px-4 min-w-fit absolute right-0  z-10">
                 <StatusProgress items={rocketStatus}/>
                 <StatusProgress items={otherStatus}/>
                 <div className="mt-auto">

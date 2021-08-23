@@ -3,9 +3,9 @@ import {ReactNode,HTMLAttributes} from "react";
 export interface NavigationProps extends HTMLAttributes<HTMLUListElement>{
     children: ReactNode
 }
-function Navigation({className,children}:NavigationProps){
+function Navigation({id,className,children}:NavigationProps){
     return(
-         <ul className={className}>
+         <ul id={id} className={className}>
              {children? children: null}
         </ul>
     )

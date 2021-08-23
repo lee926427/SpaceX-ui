@@ -4,9 +4,10 @@ interface SpotLightProps extends HTMLAttributes<HTMLDivElement>{
     gradient?: string;
     transform?: string;
 }
-function SpotLight({className,transform,size,gradient}:SpotLightProps){
+function SpotLight({id,className,transform,size,gradient}:SpotLightProps){
     return(
         <div
+            id={id}
             className={className}
             style={{
                 width:size ? size : "100%",

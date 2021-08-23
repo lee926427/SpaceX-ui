@@ -46,7 +46,7 @@ function TemplateFooter(){
   return(
     <footer>
       <nav className="fixed bottom-0 w-full pointer-events-none flex justify-center">
-        <Navigation className="flex flex-row bg-blueGray-900 rounded-t-xl px-4 py-2">
+        <Navigation id="navigation" className="flex flex-row px-4 py-2">
           {
             links.map(
               link=>(
