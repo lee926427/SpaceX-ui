@@ -59,11 +59,7 @@ function VehicleStatus(){
         </ul>
     )
 }
-function Leftside(){
-    return(
-        <></>
-    )
-}
+
 function View(){
     const taskList = useRecoilValue(tasks);
     const rocketStatus = useRecoilValue(rocketState);
